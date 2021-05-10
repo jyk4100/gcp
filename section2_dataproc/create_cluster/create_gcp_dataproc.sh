@@ -48,7 +48,6 @@ gcloud dataproc clusters create spark-dwh ^
 ## dump json files again
 cd C:/Users/Kim Jungyoon/Documents/2.study/gcp-de/secion2_loading_data/json-files/
 
-
 ## ggwp and use web interface ## beta install required?? ## component vs initialization??
 gcloud beta dataproc clusters create spark-etl ^
   --enable-component-gateway ^

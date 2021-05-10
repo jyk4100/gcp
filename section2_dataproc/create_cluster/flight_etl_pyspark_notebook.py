@@ -1,5 +1,5 @@
 ## 2021-05-09
-## finally able to create data proc cluster with "resource" on webui instead of initialization
+## finally able to create data proc cluster with "resource" on web ui instead of initialization
 
 ## import pyspark ## took forever but no need
 ## pyspark.__version__
