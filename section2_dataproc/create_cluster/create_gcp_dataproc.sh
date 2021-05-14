@@ -46,7 +46,7 @@ gcloud dataproc clusters create spark-dwh ^
  --image-version 1.3
 
 ## dump json files again
-cd C:/Users/Kim Jungyoon/Documents/2.study/gcp-de/secion2_loading_data/json-files/
+cd C:/Users/Kim Jungyoon/Documents/2.study/gcp-de/section2_loading_data/json-files/
 
 ## ggwp and use web interface ## beta install required?? ## component vs initialization??
 gcloud beta dataproc clusters create spark-etl ^

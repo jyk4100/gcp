@@ -17,4 +17,4 @@ rem should be run programmatically but ez solution for now
 gsutil cp json-files/2019-05-04.json gs://test-etl/%data_path% && ^
 gsutil cp json-files/2019-05-05.json gs://test-etl/%data_path%
 
-rem TBD: how to get error code or conditional execution then "log" status?
+rem TBD: get error code or conditional execution then "log" status?
