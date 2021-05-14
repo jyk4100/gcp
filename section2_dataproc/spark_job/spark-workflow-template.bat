@@ -9,9 +9,10 @@ set bucket=gs://test-etl
 set data_path=flights-data
 set upload_filename=2019-05-04
 
-rem gcloud dataproc workflow-templates delete -q $template_name  &&
+rem gcloud beta dataproc workflow-templates create test --region=us-east1
+rem gcloud beta dataproc workflow-templates delete test --region=us-east1
 
-gcloud beta dataproc workflow-templates create %template_name% --region 'us-east1-b' && ^^
+gcloud beta dataproc workflow-templates create %template_name% --region=us-east1 && ^
 
 rem rem data proc cluster creation part commented out to save cost
 rem gcloud beta dataproc workflow-templates set-managed-cluster $template_name --zone "us-east1-b" \
@@ -31,7 +32,9 @@ rem 	add-job pyspark ^
 rem 	step-id flight_delays_etl ^
 rem 	workflow-template=$template_name && ^
 
-gcloud beta dataproc workflow-templates instantiate $template_name && ^
+gcloud beta dataproc workflow-templates instantiate %template_name% --region=us-east1 && ^
+
+echo loading to tables--------------------- 
 
 bq load --source_format=NEWLINE_DELIMITED_JSON ^
   data_test.avg_delays_by_distance ^
@@ -42,4 +45,4 @@ bq load --source_format=NEWLINE_DELIMITED_JSON ^
   %bucket%/flights_data_output/%upload_filename%_flight_nums/*.json
 
 
-
+rem doesn't work... could test webui but data proc costs per running time...
