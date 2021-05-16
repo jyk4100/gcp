@@ -79,23 +79,23 @@ with DAG("flights_delay_etl", default_args=DEFAULT_DAG_ARGS) as dag :
         max_bad_records=0
     )
 
-    # delete_cluster = DataprocClusterDeleteOperator(
-    #     task_id ="delete_dataproc_cluster",
-    #     cluster_name="ephemeral-spark-cluster-{{ds_nodash}}",
-    #     region="us-east1",
-    #     trigger_rule = TriggerRule.ALL_DONE
-    # )
+    delete_cluster = DataprocClusterDeleteOperator(
+        task_id ="delete_dataproc_cluster",
+        cluster_name="ephemeral-spark-cluster-{{ds_nodash}}",
+        region="us-east1",
+        trigger_rule = TriggerRule.ALL_DONE
+    )
 
-    # delete_tranformed_files = BashOperator(
-    #     task_id = "delete_tranformed_files",
-    #     bash_command = "gsutil -m rm -r " + BUCKET + "/flights_data_output/*"
-    # )
+    delete_tranformed_files = BashOperator(
+        task_id = "delete_tranformed_files",
+        bash_command = "gsutil -m rm -r " + BUCKET + "/flights_data_output/*"
+    )
 
-    ## testing just the upload portion after clusters creation finally success
+    create_cluster.dag = dag
+    create_cluster.set_downstream(submit_pyspark)
+    submit_pyspark.set_downstream([bq_load_delays_by_flight_nums, bq_load_delays_by_distance, delete_cluster])
+    delete_cluster.set_downstream(delete_tranformed_files)
+
+    # # testing just the upload portion after clusters creation finally success
     # bq_load_delays_by_flight_nums.dag = dag
     # bq_load_delays_by_flight_nums.set_downstream(bq_load_delays_by_distance)
-
-    # create_cluster.dag = dag
-    # create_cluster.set_downstream(submit_pyspark)
-    # submit_pyspark.set_downstream([bq_load_delays_by_flight_nums, bq_load_delays_by_distance, delete_cluster])
-    # delete_cluster.set_downstream(delete_tranformed_files)
