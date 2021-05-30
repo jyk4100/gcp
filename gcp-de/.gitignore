@@ -1,14 +1,16 @@
+## https://prudential.udemy.com/course/data-engineering-on-google-cloud-platform/
+
 ## file extension
 /resource
 *.csv
 *.json
 *.docx
+*.pdf
 
 ## files
 review.txt
 console.docx
 ## word 나 txt 나 가독성 별로임 ㅋㅋ 걍 commit 하는 보람이라도 느껴야지
-
 
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
