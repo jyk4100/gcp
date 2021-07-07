@@ -4,10 +4,13 @@
 *.json
 *.docx
 
+## idk what point of spending hours on setup...
+
 ## files
 review.txt
 console.docx
 
-## no need
+## git ignore only ignores when adding file if file already added rm --cached
+## https://stackoverflow.com/questions/30227858/gitignore-exclude-specific-file
 flights_13th_may.sql
 sqoop-simple-table-imports.sh
